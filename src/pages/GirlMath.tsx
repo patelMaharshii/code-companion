@@ -9,8 +9,8 @@ import calculatorIcon from "@/assets/calculator-icon.png";
 import piggyBank from "@/assets/piggy-bank.png";
 
 const GirlMath = () => {
-  const [originalPrice, setOriginalPrice] = useState("");
-  const [discountPercent, setDiscountPercent] = useState("");
+  const [originalPrice, setOriginalPrice] = useState("99.99");
+  const [discountPercent, setDiscountPercent] = useState("20");
   const [result, setResult] = useState<{
     saved: number;
     invested: number;
