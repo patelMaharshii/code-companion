@@ -71,9 +71,9 @@ const questContent: Record<number, {
           scenario: "Sarah lives paycheck to paycheck. Her car needs a $800 repair, and she just saw a 50% off sale on a new laptop she's been wanting ($600 sale price).",
           choices: [
             { label: "Buy the laptop—it's a great deal and she needs it for work eventually", isCorrect: false },
-            { label: "Skip both and save the $2,000 as an emergency fund starter", isCorrect: true },
-            { label: "Fix the car and buy the laptop—she can make it work", isCorrect: false },
-            { label: "Fix the car only and put the rest on a credit card for emergencies", isCorrect: false }
+            { label: "Skip both and save the $2,000 as an emergency fund starter", isCorrect: false },
+            { label: "Fix the car only and start building an emergency fund with the rest", isCorrect: true },
+            { label: "Fix the car and buy the laptop—she can make it work", isCorrect: false }
           ]
         },
         explanation: "Sarah should fix the car (needed for work/life) and save the remaining money as the start of her emergency fund. The laptop can wait—building even a small emergency cushion (that $1,200 after the car repair) will protect her from the next unexpected expense. The 'deal' on the laptop is meaningless if it leaves her vulnerable to the next emergency."
@@ -189,6 +189,61 @@ const questContent: Record<number, {
         explanation: "20% of your after-tax income should go toward savings and debt repayment. This 'pay yourself first' principle ensures you're building your financial future before spending on wants. For someone earning $3,000/month, that's $600. Over a year, that's $7,200 working for your future!"
       }
     ]
+  },
+  // Default content for quests 4-9 (you can customize these later)
+  4: {
+    lessonSteps: [
+      {
+        title: "Coming Soon",
+        content: "This quest content is being developed. Check back soon for an interactive lesson on understanding stocks!"
+      }
+    ],
+    quizSteps: []
+  },
+  5: {
+    lessonSteps: [
+      {
+        title: "Coming Soon",
+        content: "This quest content is being developed. Check back soon for an interactive lesson on mutual funds!"
+      }
+    ],
+    quizSteps: []
+  },
+  6: {
+    lessonSteps: [
+      {
+        title: "Coming Soon",
+        content: "This quest content is being developed. Check back soon for an interactive lesson on bonds!"
+      }
+    ],
+    quizSteps: []
+  },
+  7: {
+    lessonSteps: [
+      {
+        title: "Coming Soon",
+        content: "This quest content is being developed. Check back soon for an interactive lesson on ETFs!"
+      }
+    ],
+    quizSteps: []
+  },
+  8: {
+    lessonSteps: [
+      {
+        title: "Coming Soon",
+        content: "This quest content is being developed. Check back soon for an interactive lesson on diversification!"
+      }
+    ],
+    quizSteps: []
+  },
+  9: {
+    lessonSteps: [
+      {
+        title: "Coming Soon",
+        content: "This quest content is being developed. Check back soon for an interactive lesson on index funds!"
+      }
+    ],
+    quizSteps: []
   }
 };
 
@@ -197,11 +252,40 @@ const QuestModal = ({ quest, onClose, onComplete }: QuestModalProps) => {
   const [currentLessonStep, setCurrentLessonStep] = useState(0);
   const [showQuiz, setShowQuiz] = useState(false);
 
+  // Safety check - if content doesn't exist, show coming soon message
+  if (!content) {
+    return (
+      <Dialog open={true} onOpenChange={onClose}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">{quest.title}</DialogTitle>
+          </DialogHeader>
+          <Card className="border-2 bg-accent/20">
+            <CardContent className="pt-6 text-center">
+              <Target className="w-16 h-16 text-primary mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-foreground mb-2">Coming Soon!</h3>
+              <p className="text-muted-foreground">This quest content is being developed. Check back soon!</p>
+            </CardContent>
+          </Card>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
   const isLastLesson = currentLessonStep === content.lessonSteps.length - 1;
+  const hasQuiz = content.quizSteps.length > 0;
 
   const handleContinue = () => {
     if (isLastLesson) {
-      setShowQuiz(true);
+      if (hasQuiz) {
+        setShowQuiz(true);
+      } else {
+        // No quiz, just complete the quest
+        onComplete(quest.id);
+        toast.success("Quest completed! You earned a badge! ⭐", {
+          icon: <CheckCircle2 className="w-4 h-4" />
+        });
+      }
     } else {
       setCurrentLessonStep(prev => prev + 1);
     }
@@ -279,10 +363,15 @@ const QuestModal = ({ quest, onClose, onComplete }: QuestModalProps) => {
               </Card>
 
               <Button onClick={handleContinue} className="w-full gap-2" size="lg">
-                {isLastLesson ? (
+                {isLastLesson && hasQuiz ? (
                   <>
                     <Sparkles className="w-4 h-4" />
                     Start Practice Problems
+                  </>
+                ) : isLastLesson ? (
+                  <>
+                    <CheckCircle2 className="w-4 h-4" />
+                    Complete Quest
                   </>
                 ) : (
                   "Continue"
