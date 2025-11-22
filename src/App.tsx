@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Learning from "./pages/Learning";
 import Community from "./pages/Community";
 import GirlMath from "./pages/GirlMath";
+import Article from "./pages/Article";  // Add this import
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,9 +21,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/learning" element={<Learning />} />
+          <Route path="/learning/articles/:articleId" element={<Article />} />  {/* Add this route */}
           <Route path="/community" element={<Community />} />
           <Route path="/girl-math" element={<GirlMath />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

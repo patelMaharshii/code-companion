@@ -7,6 +7,8 @@ import learningMapImage from "@/assets/learning-map.png";
 import Navigation from "@/components/Navigation";
 import QuestModal from "@/components/QuestModal";
 import ProgressStats from "@/components/ProgressStats";
+import { Link } from "react-router-dom";
+
 
 interface Quest {
   id: number;
@@ -121,7 +123,63 @@ const Learning = () => {
             </CardContent>
           </Card>
         </div>
-
+        {/* Educational Articles */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-foreground mb-4">Educational Resources</h2>
+          <Card className="border-2">
+            <CardContent className="pt-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <Link 
+                  to="/learning/articles/what-are-stocks"
+                  className="p-4 rounded-lg border-2 hover:border-primary hover:bg-accent/50 transition-all group"
+                >
+                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary">
+                    What Are Stocks?
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Learn the basics of stock ownership and how the stock market works
+                  </p>
+                </Link>
+                
+                <Link 
+                  to="/learning/articles/mutual-funds-explained"
+                  className="p-4 rounded-lg border-2 hover:border-primary hover:bg-accent/50 transition-all group"
+                >
+                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary">
+                    Mutual Funds Explained
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Discover how mutual funds pool money to invest in diversified portfolios
+                  </p>
+                </Link>
+                
+                <Link 
+                  to="/learning/articles/understanding-bonds"
+                  className="p-4 rounded-lg border-2 hover:border-primary hover:bg-accent/50 transition-all group"
+                >
+                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary">
+                    Understanding Bonds
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Explore fixed-income investments and how bonds can stabilize your portfolio
+                  </p>
+                </Link>
+                
+                <Link 
+                  to="/learning/articles/etfs-index-funds"
+                  className="p-4 rounded-lg border-2 hover:border-primary hover:bg-accent/50 transition-all group"
+                >
+                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary">
+                    ETFs & Index Funds
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Learn about low-cost, passive investing strategies for beginners
+                  </p>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
         {/* Quests Grid */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
