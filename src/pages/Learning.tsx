@@ -43,6 +43,54 @@ const Learning = () => {
       locked: false,
       category: "Daily Money"
     },
+    {
+      id: 4,
+      title: "Understanding Stocks",
+      description: "Learn what stocks are, how they work, and why they're a key part of wealth building",
+      completed: false,
+      locked: false,
+      category: "Investing 101"
+    },
+    {
+      id: 5,
+      title: "Mutual Funds Explained",
+      description: "Discover how mutual funds work and why they're perfect for beginner investors",
+      completed: false,
+      locked: false,
+      category: "Investing 101"
+    },
+    {
+      id: 6,
+      title: "Bonds Demystified",
+      description: "Understand bonds, why they're considered safer, and how to use them in your portfolio",
+      completed: false,
+      locked: false,
+      category: "Investing 101"
+    },
+    {
+      id: 7,
+      title: "ETFs vs Mutual Funds",
+      description: "Compare ETFs and mutual funds to choose the right investment vehicle for you",
+      completed: false,
+      locked: false,
+      category: "Investing 101"
+    },
+    {
+      id: 8,
+      title: "Diversification Basics",
+      description: "Learn the golden rule of investing: don't put all your eggs in one basket",
+      completed: false,
+      locked: false,
+      category: "Investment Strategy"
+    },
+    {
+      id: 9,
+      title: "Index Funds 101",
+      description: "Discover why index funds are a favorite among investors and how to get started",
+      completed: false,
+      locked: false,
+      category: "Investment Strategy"
+    },
   ]);
 
   const [selectedQuest, setSelectedQuest] = useState<Quest | null>(null);
